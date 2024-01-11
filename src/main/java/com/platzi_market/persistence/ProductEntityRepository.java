@@ -1,6 +1,7 @@
 package com.platzi_market.persistence;
 
 import com.platzi_market.domain.ProductModel;
+import com.platzi_market.domain.repository.ProductModelRepository;
 import com.platzi_market.persistence.crud.ProductCrudRepository;
 import com.platzi_market.persistence.entities.ProductEntity;
 import com.platzi_market.persistence.mapper.ProductMapper;
@@ -12,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class ProductRepository implements com.platzi_market.domain.repository.ProductRepository {
+public class ProductEntityRepository implements ProductModelRepository {
 
     @Autowired
     private ProductCrudRepository productCrudRepository;
