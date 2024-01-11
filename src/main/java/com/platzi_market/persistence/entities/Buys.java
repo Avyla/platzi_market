@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "shopping")
@@ -19,6 +20,12 @@ public class Buys {
     private String paymentMethod;
     private String comments;
     private String state;
+    @ManyToOne
+    @JoinColumn(name = "id_customer",insertable = false, updatable = false)
+    private Customer customer;
+    @OneToMany(mappedBy = "buys")
+    private List<BuysProduct> buysProducts;
+
 
     public Integer getIdBuys() {
         return idBuys;

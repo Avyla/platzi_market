@@ -2,6 +2,8 @@ package com.platzi_market.persistence.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="products")
 public class Product {
@@ -16,6 +18,18 @@ public class Product {
     private Double price;
     private Integer stock;
     private Boolean state;
+
+    /*Con la anotacio @ManyToOne se refleja muchos a uno en la tabla sql
+    y la anotacion @JoinColumn refleja el campo mendiante el cual se
+    crea esta relacion
+    insertable =  false impide que se creen nuevas categorias desde esta relacion
+    updatable = false impide que se hagan actualizacion en la tabla categories desde esta relacion*/
+
+    @ManyToOne
+    @JoinColumn(name = "id_category", insertable = false, updatable = false)
+    private Category category;
+    @OneToMany(mappedBy = "product")
+    private List<BuysProduct> buysProducts;
 
     public Integer getIdProduct() {
         return idProduct;
