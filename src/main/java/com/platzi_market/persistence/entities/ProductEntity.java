@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="products")
-public class Product {
+@Table(name = "products")
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_product")
@@ -27,9 +27,9 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "id_category", insertable = false, updatable = false)
-    private Category category;
+    private CategoryEntity categoryEntity;
     @OneToMany(mappedBy = "product")
-    private List<BuysProduct> buysProducts;
+    private List<BuysProductEntity> buysProductEntities;
 
     public Integer getIdProduct() {
         return idProduct;
@@ -85,5 +85,21 @@ public class Product {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    public CategoryEntity getCategory() {
+        return categoryEntity;
+    }
+
+    public void setCategory(CategoryEntity categoryEntity) {
+        this.categoryEntity = categoryEntity;
+    }
+
+    public List<BuysProductEntity> getBuysProducts() {
+        return buysProductEntities;
+    }
+
+    public void setBuysProducts(List<BuysProductEntity> buysProductEntities) {
+        this.buysProductEntities = buysProductEntities;
     }
 }

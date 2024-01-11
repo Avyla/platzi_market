@@ -27,4 +27,5 @@ public class BuysProductPK implements Serializable {
     public void setIdProduct(Integer idProduct) {
         this.idProduct = idProduct;
     }
+
 }

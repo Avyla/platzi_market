@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "shopping_products")
-public class BuysProduct {
+public class BuysProductEntity {
     @EmbeddedId
     private BuysProductPK id;
     private Integer amount;
@@ -12,10 +12,10 @@ public class BuysProduct {
     private Boolean state;
     @ManyToOne
     @JoinColumn(name = "id_buys", insertable = false, updatable = false)
-    private Buys buys;
+    private BuysEntity buysEntity;
     @ManyToOne
     @JoinColumn(name = "id_product", insertable = false, updatable = false)
-    private Product product;
+    private ProductEntity productEntity;
 
     public BuysProductPK getId() {
         return id;
@@ -47,5 +47,21 @@ public class BuysProduct {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    public BuysEntity getBuys() {
+        return buysEntity;
+    }
+
+    public void setBuys(BuysEntity buysEntity) {
+        this.buysEntity = buysEntity;
+    }
+
+    public ProductEntity getProduct() {
+        return productEntity;
+    }
+
+    public void setProduct(ProductEntity productEntity) {
+        this.productEntity = productEntity;
     }
 }

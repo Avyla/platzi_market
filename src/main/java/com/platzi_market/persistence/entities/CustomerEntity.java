@@ -6,10 +6,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "customers")
-public class Customer {
+public class CustomerEntity {
     @Id
     @Column(name = "id_customer")
-    private Integer idCustomer;
+    private String idCustomer;
     private String name;
     @Column(name = "last_name")
     private String lastName;
@@ -17,13 +17,13 @@ public class Customer {
     private String address;
     private String email;
     @OneToMany(mappedBy = "customer")
-    private List<Buys> shopping;
+    private List<BuysEntity> shopping;
 
-    public Integer getIdCustomer() {
+    public String getIdCustomer() {
         return idCustomer;
     }
 
-    public void setIdCustomer(Integer idCustomer) {
+    public void setIdCustomer(String idCustomer) {
         this.idCustomer = idCustomer;
     }
 
@@ -67,4 +67,11 @@ public class Customer {
         this.email = email;
     }
 
+    public List<BuysEntity> getShopping() {
+        return shopping;
+    }
+
+    public void setShopping(List<BuysEntity> shopping) {
+        this.shopping = shopping;
+    }
 }

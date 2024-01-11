@@ -3,12 +3,11 @@ package com.platzi_market.persistence.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "shopping")
-public class Buys {
+public class BuysEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_buys")
@@ -21,10 +20,10 @@ public class Buys {
     private String comments;
     private String state;
     @ManyToOne
-    @JoinColumn(name = "id_customer",insertable = false, updatable = false)
-    private Customer customer;
+    @JoinColumn(name = "id_customer", insertable = false, updatable = false)
+    private CustomerEntity customerEntity;
     @OneToMany(mappedBy = "buys")
-    private List<BuysProduct> buysProducts;
+    private List<BuysProductEntity> buysProductEntities;
 
 
     public Integer getIdBuys() {
@@ -73,5 +72,21 @@ public class Buys {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public CustomerEntity getCustomer() {
+        return customerEntity;
+    }
+
+    public void setCustomer(CustomerEntity customerEntity) {
+        this.customerEntity = customerEntity;
+    }
+
+    public List<BuysProductEntity> getBuysProducts() {
+        return buysProductEntities;
+    }
+
+    public void setBuysProducts(List<BuysProductEntity> buysProductEntities) {
+        this.buysProductEntities = buysProductEntities;
     }
 }
