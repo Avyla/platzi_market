@@ -17,6 +17,7 @@ public class ProductEntityRepository implements ProductModelRepository {
 
     @Autowired
     private ProductCrudRepository productCrudRepository;
+    @Autowired
     private ProductMapper productMapper;
 
     @Override

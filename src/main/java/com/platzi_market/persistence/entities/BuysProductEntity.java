@@ -49,19 +49,19 @@ public class BuysProductEntity {
         this.state = state;
     }
 
-    public BuysEntity getBuys() {
+    public BuysEntity getBuysEntity() {
         return buysEntity;
     }
 
-    public void setBuys(BuysEntity buysEntity) {
+    public void setBuysEntity(BuysEntity buysEntity) {
         this.buysEntity = buysEntity;
     }
 
-    public ProductEntity getProduct() {
+    public ProductEntity getProductEntity() {
         return productEntity;
     }
 
-    public void setProduct(ProductEntity productEntity) {
+    public void setProductEntity(ProductEntity productEntity) {
         this.productEntity = productEntity;
     }
 }

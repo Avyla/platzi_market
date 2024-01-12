@@ -58,11 +58,11 @@ public class ProductModel {
         this.active = active;
     }
 
-    public CategoryModel getCategory() {
+    public CategoryModel getCategoryModel() {
         return categoryModel;
     }
 
-    public void setCategory(CategoryModel categoryModel) {
+    public void setCategoryModel(CategoryModel categoryModel) {
         this.categoryModel = categoryModel;
     }
 }

@@ -16,7 +16,8 @@ public class CustomerEntity {
     private Double cellphone;
     private String address;
     private String email;
-    @OneToMany(mappedBy = "customer")
+
+    @OneToMany(mappedBy = "customerEntity")
     private List<BuysEntity> shopping;
 
     public String getIdCustomer() {

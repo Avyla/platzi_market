@@ -28,7 +28,8 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "id_category", insertable = false, updatable = false)
     private CategoryEntity categoryEntity;
-    @OneToMany(mappedBy = "product")
+
+    @OneToMany(mappedBy = "productEntity")
     private List<BuysProductEntity> buysProductEntities;
 
     public Integer getIdProduct() {
@@ -87,19 +88,12 @@ public class ProductEntity {
         this.state = state;
     }
 
-    public CategoryEntity getCategory() {
+    public CategoryEntity getCategoryEntity() {
         return categoryEntity;
     }
 
-    public void setCategory(CategoryEntity categoryEntity) {
+    public void setCategoryEntity(CategoryEntity categoryEntity) {
         this.categoryEntity = categoryEntity;
     }
 
-    public List<BuysProductEntity> getBuysProducts() {
-        return buysProductEntities;
-    }
-
-    public void setBuysProducts(List<BuysProductEntity> buysProductEntities) {
-        this.buysProductEntities = buysProductEntities;
-    }
 }

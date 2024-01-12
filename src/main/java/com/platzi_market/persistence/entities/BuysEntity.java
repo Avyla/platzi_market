@@ -19,10 +19,12 @@ public class BuysEntity {
     private String paymentMethod;
     private String comments;
     private String state;
+
     @ManyToOne
     @JoinColumn(name = "id_customer", insertable = false, updatable = false)
     private CustomerEntity customerEntity;
-    @OneToMany(mappedBy = "buys")
+
+    @OneToMany(mappedBy = "buysEntity")
     private List<BuysProductEntity> buysProductEntities;
 
 
