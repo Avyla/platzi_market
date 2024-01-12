@@ -34,7 +34,7 @@ public class ProductEntityRepository implements ProductModelRepository {
 
     @Override
     public Optional<List<ProductModel>> getScarseProducts(Integer quantity) {
-        Optional<List<ProductEntity>> productsEntities = productCrudRepository.findByStockLessThanAndState(quantity,true);
+        Optional<List<ProductEntity>> productsEntities = productCrudRepository.findByStockLessThanAndState(quantity, true);
         return productsEntities.map(list ->
                 list.stream()
                         .map(productMapper::toProductModel)

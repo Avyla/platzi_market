@@ -3,9 +3,9 @@ package com.platzi_market.web.controller;
 import com.platzi_market.domain.ProductModel;
 import com.platzi_market.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,27 +18,40 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    public List<ProductModel> getAll() {
-        return productService.getAll();
+    public ResponseEntity<List<ProductModel>> getAll() {
+        return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
-    public Optional<ProductModel> getProduct(Integer productId) {
-        return productService.getProduct(productId);
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductModel> getProduct(@PathVariable("id") Integer productId) {
+        return productService.getProduct(productId)
+                .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public Optional<List<ProductModel>> getByCategory(Integer categoryId) {
-        return productService.getByCategory(categoryId);
+    @GetMapping("/category/{id}")
+    public ResponseEntity<List<ProductModel>> getByCategory(@PathVariable("id") Integer categoryId) {
+        return productService.getByCategory(categoryId)
+                .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public Optional<List<ProductModel>> getScarseProducts(Integer quantity) {
-        return productService.getScarseProducts(quantity);
+    @GetMapping("/scarse/{quantity}")
+    public ResponseEntity<List<ProductModel>> getScarseProducts(@PathVariable("quantity") Integer quantity) {
+        return productService.getScarseProducts(quantity)
+                .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public ProductModel save(ProductModel productModel) {
-        return productService.save(productModel);
+    @PostMapping()
+    public ResponseEntity<ProductModel> save(@RequestBody ProductModel productModel) {
+        return new ResponseEntity<>(productService.save(productModel), HttpStatus.CREATED);
     }
 
-    public Boolean delete(Integer productId) {
-        return productService.delete(productId);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") Integer productId) {
+        return productService.delete(productId)?
+                new ResponseEntity<>(HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
