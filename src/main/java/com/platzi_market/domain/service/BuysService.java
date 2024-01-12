@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BuysService {
@@ -17,7 +18,7 @@ public class BuysService {
         return buysModelRepository.getAll();
     }
 
-    public BuysModel getByCustomer(Integer idCustomer) {
+    public Optional<List<BuysModel>> getByCustomer(String idCustomer) {
         return buysModelRepository.getByCustomer(idCustomer);
     }
 
