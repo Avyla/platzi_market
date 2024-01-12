@@ -10,9 +10,12 @@ public class BuysProductEntity {
     private Integer amount;
     private Double total;
     private Boolean state;
+
     @ManyToOne
+    @MapsId("idBuys")
     @JoinColumn(name = "id_buys", insertable = false, updatable = false)
     private BuysEntity buysEntity;
+
     @ManyToOne
     @JoinColumn(name = "id_product", insertable = false, updatable = false)
     private ProductEntity productEntity;
@@ -49,19 +52,19 @@ public class BuysProductEntity {
         this.state = state;
     }
 
-    public BuysEntity getBuysEntity() {
+    public BuysEntity getBuys() {
         return buysEntity;
     }
 
-    public void setBuysEntity(BuysEntity buysEntity) {
+    public void setBuys(BuysEntity buysEntity) {
         this.buysEntity = buysEntity;
     }
 
-    public ProductEntity getProductEntity() {
+    public ProductEntity getProduct() {
         return productEntity;
     }
 
-    public void setProductEntity(ProductEntity productEntity) {
+    public void setProduct(ProductEntity productEntity) {
         this.productEntity = productEntity;
     }
 }

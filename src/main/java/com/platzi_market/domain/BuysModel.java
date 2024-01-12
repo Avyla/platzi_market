@@ -1,32 +1,17 @@
-package com.platzi_market.persistence.entities;
-
-import jakarta.persistence.*;
+package com.platzi_market.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "shopping")
-public class BuysEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_buys")
+public class BuysModel {
+
     private Integer idBuys;
-    @Column(name = "id_customer")
     private String idCustomer;
     private LocalDateTime date;
-    @Column(name = "payment_method")
     private String paymentMethod;
     private String comments;
     private String state;
-
-    @ManyToOne
-    @JoinColumn(name = "id_customer", insertable = false, updatable = false)
-    private CustomerEntity customerEntity;
-
-    @OneToMany(mappedBy = "buysEntity", cascade = {CascadeType.ALL})
-    private List<BuysProductEntity> buysProductEntities;
-
+    private List<BuysProductModel> products;
 
     public Integer getIdBuys() {
         return idBuys;
@@ -76,19 +61,11 @@ public class BuysEntity {
         this.state = state;
     }
 
-    public CustomerEntity getCustomerEntity() {
-        return customerEntity;
+    public List<BuysProductModel> getProducts() {
+        return products;
     }
 
-    public void setCustomerEntity(CustomerEntity customerEntity) {
-        this.customerEntity = customerEntity;
-    }
-
-    public List<BuysProductEntity> getBuysProductEntities() {
-        return buysProductEntities;
-    }
-
-    public void setBuysProductEntities(List<BuysProductEntity> buysProductEntities) {
-        this.buysProductEntities = buysProductEntities;
+    public void setProducts(List<BuysProductModel> products) {
+        this.products = products;
     }
 }
